@@ -7,9 +7,7 @@ from sklearn.ensemble import IsolationForest
 import numpy as np
 import time
 
-# ----------------------------------------
 # Streamlit Page Configuration
-# ----------------------------------------
 st.set_page_config(page_title="AI Weather Dashboard", layout="wide")
 st.title("🌍 AI-Powered Real-Time Weather Forecasting Dashboard")
 
@@ -23,9 +21,7 @@ Developed for *Smart India Hackathon 2025* 💡
 By Pushpak Bala Gaidhane — Dept. of AI & Data Science
 """)
 
-# ----------------------------------------
 # Sidebar Inputs
-# ----------------------------------------
 st.sidebar.header("⚙ Weather Search Options")
 search_type = st.sidebar.radio("Search By:", ["City Name", "ZIP / PIN Code"])
 query = st.sidebar.text_input("Enter City or ZIP:", "Delhi")
@@ -33,9 +29,7 @@ country = st.sidebar.text_input("Country Code (e.g., in, us, gb):", "in")
 
 API_KEY = "01d1f6ccaffe5c8f36a6196d7c7485a6"
 
-# ----------------------------------------
 # Fetch Weather Data Function
-# ----------------------------------------
 def get_weather(query, country, by_zip=False):
     try:
         if by_zip:
@@ -67,9 +61,7 @@ def get_weather(query, country, by_zip=False):
     except Exception as e:
         return None, f"❌ Error: {str(e)}"
 
-# ----------------------------------------
 # Get Weather Button
-# ----------------------------------------
 if st.sidebar.button("🔍 Get Weather Data"):
     with st.spinner("Fetching weather data..."):
         weather_data, error = get_weather(query, country, by_zip=(search_type == "ZIP / PIN Code"))
@@ -88,9 +80,8 @@ if st.sidebar.button("🔍 Get Weather Data"):
         col3.metric("🌬 Wind Speed (km/h)", f"{weather_data['Wind Speed (km/h)']} km/h")
         st.info(f"**Condition:** {weather_data['Condition']}")
         
-        # ----------------------------------------
+        
         # 1️⃣ Visualization
-        # ----------------------------------------
         df = pd.DataFrame({
             "Parameter": ["Temperature (°C)", "Humidity (%)", "Wind Speed (km/h)"],
             "Value": [
@@ -105,9 +96,8 @@ if st.sidebar.button("🔍 Get Weather Data"):
                          color_discrete_sequence=px.colors.qualitative.Set2)
         st.plotly_chart(fig_bar, use_container_width=True)
 
-        # ----------------------------------------
+        
         # 2️⃣ Anomaly Detection (ML Concept 1)
-        # ----------------------------------------
         st.subheader("🤖 AI Analysis — Weather Anomaly Detection")
         st.markdown("*Using Isolation Forest ML algorithm to detect unusual weather patterns*")
         
@@ -138,9 +128,8 @@ if st.sidebar.button("🔍 Get Weather Data"):
         else:
             st.success("✅ All weather readings appear normal!")
 
-        # ----------------------------------------
+        
         # 3️⃣ Smart Recommendations (ML Concept 2)
-        # ----------------------------------------
         st.subheader("🌏 Smart Weather Recommendations (Similar Cities)")
         st.markdown("*Finding cities with similar weather conditions using distance-based similarity*")
         
@@ -184,9 +173,8 @@ if st.sidebar.button("🔍 Get Weather Data"):
         else:
             st.warning("⚠️ Could not fetch data for comparison cities.")
 
-        # ----------------------------------------
+        
         # Map Visualization
-        # ----------------------------------------
         st.subheader("🗺️ Geographic Location")
         fig_map = go.Figure(go.Scattergeo(
             lon=[weather_data["Longitude"]],
