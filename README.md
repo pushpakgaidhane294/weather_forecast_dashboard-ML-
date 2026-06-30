@@ -200,19 +200,11 @@ Suggests top cities having weather conditions similar to the searched location.
 
 ---
 
-
-
 Theme:
 > Tech for Social Good – AI for Weather and Climate Awareness
-
-Course:
-**Fundamentals of Machine Learning (FML)**
-
-Department:
-**Artificial Intelligence and Data Science**
 
 ---
 
 ## 👨‍💻 Author
 
-**Pushpak Bala Gaidhane**
+**Pushpak Gaidhane**
