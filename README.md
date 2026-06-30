@@ -90,7 +90,7 @@ AI-Weather-Dashboard/
 Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/AI-Weather-Dashboard.git
+git clone https://github.com/pushpakgaidhane294/AI-Weather-Dashboard.git
 ```
 
 Move into the project folder
